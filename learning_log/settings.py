@@ -135,3 +135,28 @@ LOGIN_URL='/users/login'
 BOOTSTRAP3={
     'include_jquery':True
 }
+
+#Heroku部署
+if os.getcwd()=="/app":
+    import dj_database_url
+    # Heroku中使用postgres数据库替代SQLITE数据库
+    DATABASES = {
+        'default':dj_database_url.config(default='postgres://localhost')
+    }
+    #让request.is_secure()承认X-Forwarded-Proto头
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO','http')
+
+    #支持所有的主机头(host header),使用Heroku提供的URL来支持访问
+    ALLOWED_HOSTS = ['*']
+
+    #静态资产配置
+    BASE_DIR=os.path.dirname(os.path.abspath())
+    STATIC_ROOT='staticfiles'
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR,'static')
+    )
+
+
+
+
+
