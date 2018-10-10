@@ -1,0 +1,28 @@
+{% extends "lenarning_logs/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+    <h4>主题：{{ topic_date }}</h4>
+
+{% endblock header %}
+
+{% block content %}
+     <h4><a href="{% url "new_entry" topic_date.id %}">添加内容</a></h4>
+    <br>
+    {% for entry in entries_date %}
+           <div class="panel panel-default">
+              <div class="panel-heading">
+                  <h4>{{ entry.date_added|date:'M d,Y H:i'}}</h4>
+                   <small>
+                      <a href="{% url "edit_entry" entry.id %}">编辑内容</a>
+                  </small>
+              </div>
+              <div class="panel-body">
+                  <h4>{{ entry.text }}</h4>
+
+              </div>
+           </div>
+           {% empty %}
+           <h4><li>您还没有添加任何内容</li></h4>
+       {% endfor %}
+{% endblock content %}

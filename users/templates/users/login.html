@@ -1,0 +1,22 @@
+{% extends "lenarning_logs/base.html" %}
+{% load bootstrap3 %}<!--如果需要使用bootstrap3自定义的标签，就要加载这个模块-->
+
+{% block header %}
+    <h4>请登录你的账号：</h4>
+{% endblock header %}
+{% block content %}
+  <!-- {% if form.errors %}
+   <p>你的用户名与密码不匹配，请重新输入</p>
+   {% endif %}
+    bootstrap3 会自动管理表单错误
+    -->
+
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+
+        {% buttons %}
+         <button name="submit" class="btn btn-primary">登录</button>
+        {% endbuttons %}
+    </form>
+{% endblock content %}

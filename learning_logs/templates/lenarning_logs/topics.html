@@ -1,0 +1,26 @@
+{% extends "lenarning_logs/base.html" %}
+
+{% load bootstrap3 %}
+
+{% block header %}
+    <h4>主题：</h4>
+{% endblock header %}
+
+{% block content %}
+
+    <ul>
+       {% for topic in topics_date %}
+           <li>
+               <h4>
+               <a href="{% url "topic" topic.id%}" >{{ topic }}</a>
+               </h4>
+           </li>
+           {% empty %}
+           <li>您还没有添加任何主题</li>
+       {% endfor %}
+    </ul>
+
+    <h4><a href="{%  url 'new_topic' %}">添加主题</a></h4>
+
+
+{% endblock content %}

@@ -1,0 +1,11 @@
+{% extends "lenarning_logs/base.html" %}
+
+{% block content %}
+    <p><a href="{% url "topic" topic.id %}">{{ topic }}</a> </p>
+    <p>修改内容</p>
+  <form action="{% url 'edit_entry' entry.id %}" method="post"><!--id属性是django为每个数据表默认加的字段-->
+  {% csrf_token %}
+  {{ form.as_p }}<!--自动创建显示表单所需的全部字段，as_p 它会让Django以段落改格式渲染所有表单元素，看起来会比较整洁-->
+  <button name="submit">保存修改</button>
+  </form>
+{% endblock content %}

@@ -1,0 +1,20 @@
+{% extends "lenarning_logs/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+    <h4>添加主题：</h4>
+{% endblock header %}
+
+{% block content %}
+
+  <form action="{% url 'new_topic' %}" method="post" class="form">
+      {% csrf_token %}
+  <!--{{ form.as_p }}自动创建显示表单所需的全部字段，as_p 它会让Django以段落格式渲染所有表单元素，看起来会比较整洁-->
+      {% bootstrap_form form %}
+
+      {% buttons %}
+         <button name="submit" class="btn btn-primary">添加</button>
+        {% endbuttons %}
+
+  </form>
+{% endblock content %}

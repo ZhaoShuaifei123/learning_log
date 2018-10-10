@@ -1,0 +1,55 @@
+{% load bootstrap3 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学习笔记</title>
+    {% bootstrap_css %}<!-- 需要导入CSS样式和JS-->
+    {% bootstrap_javascript %}
+</head>
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!--<a class="navbar-brand" href="#">Brand</a>-->
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li ><a href="{% url 'index' %}" ><font size="4">学习笔记</font></a></li>
+        <li ><a href="{% url 'topics'%}"><font size="4">主题</font></a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+          {% if user.is_authenticated %}
+              <li><a><font size="4">你好，{{ user.username }}</font></a></li>
+              <li><a href="{% url 'logout' %}"><font size="4">注销</font></a></li>
+          {% else %}
+              <li><a href="{% url 'register' %}"><font size="4">注册</font></a></li>
+              <li><a href="{% url 'login' %}"><font size="4">登录</font></a></li>
+          {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div  class="container">
+     <div class="page-header">
+    {% block header%}{% endblock header %}<!-- 用来为每个页面进行补充说明 -->
+     </div>
+     <div>
+          {% block content %}{% endblock content %}
+     </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+{% extends "lenarning_logs/base.html" %}
+
+{% block content %}
+    <p><a href="{% url "topic" topic.id %}">{{ topic }}</a> </p>
+    <p>添加内容</p>
+  <form action="{% url 'new_entry' topic.id %}" method="post"><!--id属性是django为每个数据表默认加的字段-->
+  {% csrf_token %}
+  {{ form.as_p }}<!--自动创建显示表单所需的全部字段，as_p 它会让Django以段落改格式渲染所有表单元素，看起来会比较整洁-->
+  <button name="submit">添加</button>
+  </form>
+{% endblock content %}

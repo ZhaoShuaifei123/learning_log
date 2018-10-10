@@ -1,0 +1,19 @@
+{% extends "lenarning_logs/base.html" %}
+{% block header %}
+    <div class="jumbotron">
+    <h1>Hello,welcome to your arrival!</h1>
+    <p>这是一个记笔记的应用，快来开始记录了...</p>
+    </div>
+{% endblock header %}
+{% block content %}
+     {% if  user.is_authenticated == False %}
+         <font size="3">首先你需要<a href="{% url 'register' %}">注册</a>一个账号,
+             <a href="{% url 'login' %}"><font size="3">登录</font></a>后，就可以了解并使用此应用...</font>
+          </br>
+         </br>
+     {% endif %}
+
+    <font size="3">
+    你可以自己创建主题，并在主题下添加相应内容...
+    </font>
+{% endblock content %}
