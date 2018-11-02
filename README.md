@@ -1,6 +1,7 @@
 # learning_log
 学习笔记
 python3
+
 Django2.11
 
 环境版本：
